@@ -117,7 +117,7 @@ export default {
       // Use sweetalert2
       Swal.fire({
         title: "Are you sure?",
-        text: "You won't Change be idDone",
+        text: "You won't Change the Status",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -125,9 +125,17 @@ export default {
         confirmButtonText: "Yes",
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire("Change!", "Status will Change", "success").then(
-            this.$store.dispatch("changeStatus")
-          );
+          if (this.$store.getters.getStatus != false) {
+            Swal.fire("Change!", "Status will Change", "success").then(
+              this.$store.dispatch("changeStatus")
+            );
+          } else {
+            Swal.fire(
+              "Change!",
+              "Status will Change Be Not Done",
+              "success"
+            ).then(this.$store.dispatch("changeStatus"));
+          }
         }
       });
     },
