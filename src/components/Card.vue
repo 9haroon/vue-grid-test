@@ -95,7 +95,7 @@
                 <b-form-checkbox
                   id="checkbox-1"
                   name="checkbox-1"
-                  @change="isDone"
+                  @change="showAlert"
                 >
                   <div v-if="$store.getters.getStatus === false">Is Done!</div>
                   <div v-else>Not Done!</div>
@@ -110,10 +110,26 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   methods: {
-    isDone() {
-      this.$store.dispatch("changeStatus");
+    showAlert() {
+      // Use sweetalert2
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't Change be idDone",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Change!", "Status will Change", "success").then(
+            this.$store.dispatch("changeStatus")
+          );
+        }
+      });
     },
   },
 };
