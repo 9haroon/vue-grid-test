@@ -97,7 +97,7 @@
                   name="checkbox-1"
                   @change="showAlert"
                 >
-                  <div v-if="$store.getters.getStatus === false">Is Done!</div>
+                  <div v-if="$store.getters.getStatus === true">Is Done!</div>
                   <div v-else>Not Done!</div>
                 </b-form-checkbox>
               </div>
@@ -114,7 +114,6 @@ import Swal from "sweetalert2";
 export default {
   methods: {
     showAlert() {
-      // Use sweetalert2
       Swal.fire({
         title: "Are you sure?",
         text: "You won't Change the Status",

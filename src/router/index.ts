@@ -1,14 +1,16 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import PrimaryPage from "../views/PrimaryPage.vue";
-
+import PrimaryPage from "../assignment/features/primarypage/page/PrimaryPage.vue";
+import overview from "../components/overview.vue"
+import AssignRouter from "../assignment/AssignRouter"
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "PrimaryPage",
-    component: PrimaryPage,
+    path: "",
+    redirect: "assign/primary",
+    component: overview,
+    children: [...AssignRouter()]
   },
 ];
 
