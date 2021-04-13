@@ -126,15 +126,27 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           if (this.$store.getters.getStatus != false) {
-            Swal.fire("Change!", "Status will Change", "success").then(
-              this.$store.dispatch("changeStatus")
+            Swal.fire(
+              "Change!",
+              "The status will change to Is Done",
+              "success"
+            ).then(
+              this.$store.dispatch(
+                "changeStatus",
+                this.$store.getters.getStatus
+              )
             );
           } else {
             Swal.fire(
               "Change!",
-              "Status will Change Be Not Done",
+              "The status will change to Not Done",
               "success"
-            ).then(this.$store.dispatch("changeStatus"));
+            ).then(
+              this.$store.dispatch(
+                "changeStatus",
+                this.$store.getters.getStatus
+              )
+            );
           }
         }
       });
@@ -207,10 +219,6 @@ export default {
 .cardLayout .Layout .Device i {
   color: white;
   padding: 0 30px;
-}
-.cardLayout .Layout .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px) scale(1);
 }
 .cardLayout .Layout .Card {
   border-radius: 20px;
