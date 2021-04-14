@@ -111,8 +111,12 @@
 
 <script>
 import Swal from "sweetalert2";
-export default {
+import { mapActions } from "vuex";
+export default  {
   methods: {
+    ...mapActions({
+      change: "changeStatus",
+    }),
     showAlert() {
       Swal.fire({
         title: "Are you sure?",
@@ -130,10 +134,11 @@ export default {
               "The status will change to Is Done",
               "success"
             ).then(
-              this.$store.dispatch(
-                "changeStatus",
-                this.$store.getters.getStatus
-              )
+              // this.$store.dispatch(
+              //   "changeStatus",
+              //   this.$store.getters.getStatus
+              // )
+              this.change(this.$store.getters.getStatus)
             );
           } else {
             Swal.fire(
@@ -141,10 +146,11 @@ export default {
               "The status will change to Not Done",
               "success"
             ).then(
-              this.$store.dispatch(
-                "changeStatus",
-                this.$store.getters.getStatus
-              )
+              // this.$store.dispatch(
+              //   "change",
+              //   this.$store.getters.getStatus
+              // )
+              this.change(this.$store.getters.getStatus)
             );
           }
         }

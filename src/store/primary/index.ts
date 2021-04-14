@@ -1,7 +1,3 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import  primary from "./primary/index";
-import test1111 from "./test1111/index"
 
 // export default new Vuex.Store({
 //   state: {
@@ -26,10 +22,13 @@ import test1111 from "./test1111/index"
 // });
 
 
-Vue.use(Vuex);
-export default new Vuex.Store({
-  modules: {
-    primary,
-    test1111
-  },
+import state from "./state";
+import mutations from "./mutations";
+import actions from "./actions";
+import getters from "./getters";
+export default({
+  state,
+  mutations,
+  getters,
+  actions,
 });
